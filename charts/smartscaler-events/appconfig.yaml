@@ -1,3 +1,4 @@
+# NOTE: DOWNLOAD THIS FILE FROM CONFIG-HELPER TOOL
 apiVersion: v1
 kind: Secret
 metadata:
