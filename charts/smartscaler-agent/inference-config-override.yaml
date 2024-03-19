@@ -1,3 +1,5 @@
+# NOTE: DOWNLOAD THIS FILE FROM THE CONFIG-HELPER-TOOL
+# PLEASE ADD THE FOLLOWING SECTION AND SET configHelper.enabled: true
 configHelper:
   enabled: true
 inferenceAgent: 
@@ -55,6 +57,7 @@ inferenceAgent:
         url: "" # application prometheus url
     metric_interval: 60
     push_interval: 15
+    # NOTE: ADD THE apigateway URL IN THE SECTION BELOW
     smartscaler_api:
       url: "" # smartscaler api gateway url
     smartscaler_job_name: app1-smart-scaler-agent
