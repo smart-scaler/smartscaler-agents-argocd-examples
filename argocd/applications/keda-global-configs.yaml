@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keda-secrets
+spec:
+  project: smartscaler-tutorials
+  destination:
+    server: "app-cluster"
+    namespace: keda
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    retry:
+      limit: 2
+  sources:
+    - repoURL: https://github.com/smart-scaler/smartscaler-agents-argocd-examples.git
+      targetRevision: HEAD
+      path: "charts/keda/"

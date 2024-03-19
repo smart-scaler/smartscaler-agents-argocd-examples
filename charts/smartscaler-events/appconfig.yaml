@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: git-access-secret
+  namespace: smart-scaler
+  labels:
+    agent.smart-scaler.io/secret-type: repository
+type: Opaque
+data:
+  password: Z2hw== # replace the value 
+  type: Z2l0
+  url: >-
+    aHR0cHM # replace the url
+  username: cH== # replace the username
+
+
+---
+apiVersion: agent.smart-scaler.io/v1alpha1
+kind: ApplicationConfig
+metadata:
+  name: app1
+spec:
+  applicationDetails:
+    services:
+    - gitConfiguration:
+        branch: main
+        path: charts/app1/values-override.yaml
+        repository: https://github.com/smart-scaler/smartscaler-agents-argocd-examples.git
+        secretRef:
+          name: git-access-secret #github access secret name
+          namespace: smart-scaler
+        minReplicasCustomKey: .smartscaler.minReplicas
+        maxReplicasCustomKey: .smartscaler.maxReplicas
+        destinationContext: tutorial-agent
+      scaledObjectConfig:
+        kind: helm-values
+        name: nginx
